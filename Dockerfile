@@ -1,4 +1,4 @@
-FROM rust:latest as builder
+FROM rust:latest AS builder
 
 WORKDIR /usr/src/app
 COPY . .
@@ -11,7 +11,7 @@ FROM debian:bullseye-slim
 
 # Install required runtime dependencies
 RUN apt-get update && apt-get install -y \
-    libssl3 \
+    libssl-dev \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
