@@ -1,4 +1,4 @@
-FROM rust:latest AS builder
+FROM rust:bookworm as builder
 
 WORKDIR /usr/src/app
 COPY . .
@@ -7,11 +7,12 @@ COPY . .
 RUN cargo build --release
 
 # Runtime stage
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 # Install required runtime dependencies
 RUN apt-get update && apt-get install -y \
     libssl-dev \
+    openssl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
