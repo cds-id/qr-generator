@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libssl3 \
     libssl-dev \
     pkg-config \
+    curl \
     ca-certificates && \
     apt-get clean && \
     ldconfig && \
