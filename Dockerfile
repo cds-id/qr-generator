@@ -11,10 +11,13 @@ FROM debian:bookworm-slim
 
 # Install required runtime dependencies
 RUN apt-get update && apt-get install -y \
+    libssl3 \
     libssl-dev \
-    openssl \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    pkg-config \
+    ca-certificates && \
+    apt-get clean && \
+    ldconfig && \
+    ls -l /usr/lib/x86_64-linux-gnu/libssl.so.3
 
 # Copy the binary from builder
 COPY --from=builder /usr/src/app/target/release/qr-generator /usr/local/bin/
